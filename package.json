@@ -1,0 +1,20 @@
+{
+  "name": "CuddlyGiggle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "whistyun",
+  "license": "AGPL3",
+  "devDependencies": {
+    "pegjs": "^0.10.0",
+    "pegjs-loader": "^0.5.6",
+    "ts-loader": "^9.1.1",
+    "typescript": "^4.2.4",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0"
+  }
+}
