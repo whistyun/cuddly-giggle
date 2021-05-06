@@ -1,4 +1,6 @@
 # node
 node_modules/
-dist/
-! dist/parser.js
+/dist/*
+!/dist/
+!/dist/peg/
+!/dist/peg/parser.js
