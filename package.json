@@ -5,16 +5,29 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack build",
+    "serve": "npx webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "whistyun",
   "license": "AGPL3",
   "devDependencies": {
+    "@types/jasmine": "^3.6.10",
+    "html-webpack-plugin": "^5.3.1",
+    "karma": "^6.3.2",
+    "karma-firefox-launcher": "^2.1.0",
+    "karma-jasmine": "^4.0.1",
+    "karma-typescript-preprocessor": "^0.4.0",
+    "karma-webpack": "^5.0.0",
     "pegjs": "^0.10.0",
     "pegjs-loader": "^0.5.6",
     "ts-loader": "^9.1.1",
     "typescript": "^4.2.4",
     "webpack": "^5.36.2",
-    "webpack-cli": "^4.6.0"
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "ace-builds": "^1.4.12",
+    "konva": "^7.2.5"
   }
 }
