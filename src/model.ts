@@ -27,8 +27,7 @@ export interface ITerm {
 
 export interface ICommand extends ITerm {
     name: string;
-    args: Array<{ name: string, value: string }>;
-    contents?: string;
+    args: Array<{ name: string, value: string }>
 }
 
 export interface IAssign extends ITerm {
@@ -39,12 +38,12 @@ export interface IAssign extends ITerm {
 export interface IIfThen extends ITerm {
     condition: ICommand;
     thens: Array<ITerm>;
-    elses: Array<ITerm>
+    elses?: Array<ITerm>
 }
 
 export interface IElifChain extends ITerm {
     thens: Array<{ condition: ICommand, terms: Array<ITerm> }>;
-    elses: Array<ITerm>;
+    elses?: Array<ITerm>;
 }
 
 export interface ISwitch extends ITerm {

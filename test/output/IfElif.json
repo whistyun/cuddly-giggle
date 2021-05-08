@@ -1,0 +1,167 @@
+[
+   {
+      "id": 10,
+      "type": "ElifChain",
+      "thens": [
+         {
+            "condition": {
+               "id": 1,
+               "type": "Command",
+               "name": "condition1",
+               "args": [
+                  {
+                     "name": "arg1",
+                     "value": "false"
+                  }
+               ]
+            },
+            "terms": [
+               {
+                  "id": 2,
+                  "type": "Command",
+                  "name": "command11",
+                  "args": [
+                     {
+                        "name": "arg1",
+                        "value": "value"
+                     }
+                  ]
+               },
+               {
+                  "id": 3,
+                  "type": "Command",
+                  "name": "command12",
+                  "args": []
+               }
+            ]
+         },
+         {
+            "condition": {
+               "id": 4,
+               "type": "Command",
+               "name": "condition1",
+               "args": [
+                  {
+                     "name": "arg1",
+                     "value": "false"
+                  }
+               ]
+            },
+            "terms": [
+               {
+                  "id": 5,
+                  "type": "Command",
+                  "name": "command13",
+                  "args": [
+                     {
+                        "name": "arg1",
+                        "value": "value"
+                     }
+                  ]
+               },
+               {
+                  "id": 6,
+                  "type": "Command",
+                  "name": "command14",
+                  "args": []
+               }
+            ]
+         },
+         {
+            "condition": {
+               "id": 7,
+               "type": "Command",
+               "name": "condition1",
+               "args": []
+            },
+            "terms": [
+               {
+                  "id": 8,
+                  "type": "Command",
+                  "name": "command15",
+                  "args": [
+                     {
+                        "name": "arg1",
+                        "value": "value"
+                     }
+                  ]
+               },
+               {
+                  "id": 9,
+                  "type": "Command",
+                  "name": "command16",
+                  "args": []
+               }
+            ]
+         }
+      ]
+   },
+   {
+      "id": 18,
+      "type": "ElifChain",
+      "thens": [
+         {
+            "condition": {
+               "id": 11,
+               "type": "Command",
+               "name": "condition2",
+               "args": []
+            },
+            "terms": [
+               {
+                  "id": 12,
+                  "type": "Command",
+                  "name": "command21",
+                  "args": [
+                     {
+                        "name": "arg1",
+                        "value": "value"
+                     }
+                  ]
+               },
+               {
+                  "id": 13,
+                  "type": "Command",
+                  "name": "command22",
+                  "args": []
+               }
+            ]
+         },
+         {
+            "condition": {
+               "id": 14,
+               "type": "Command",
+               "name": "condition2",
+               "args": []
+            },
+            "terms": [
+               {
+                  "id": 15,
+                  "type": "Command",
+                  "name": "command23",
+                  "args": [
+                     {
+                        "name": "arg1",
+                        "value": "value"
+                     }
+                  ]
+               },
+               {
+                  "id": 16,
+                  "type": "Command",
+                  "name": "command24",
+                  "args": []
+               }
+            ]
+         }
+      ],
+      "elses": [
+         {
+            "id": 17,
+            "type": "Command",
+            "name": "command25",
+            "args": []
+         }
+      ]
+   }
+]

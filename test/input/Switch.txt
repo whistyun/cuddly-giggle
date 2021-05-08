@@ -1,0 +1,9 @@
+Switch condition(arg1: 1234)
+    Case "a"
+      CommandA1
+      CommandA2
+
+    Case "b"
+      CommandB1
+      @Switch
+End

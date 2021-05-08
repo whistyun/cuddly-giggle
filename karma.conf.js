@@ -17,8 +17,16 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'test/**/*.spec.ts'
+      'test/**/*.spec.ts',
+
+      { pattern: 'test/input/*.txt',   watched: false, included:false, nocache:false, served:true },
+      { pattern: 'test/output/*.json', watched: false, included:false, nocache:false, served:true },
     ],
+
+    proxies: {
+      '/input/': '/base/test/input/',
+      '/output/': '/base/test/output/',
+   },
 
     // list of files / patterns to exclude
     exclude: [

@@ -1,0 +1,110 @@
+[
+   {
+      "id": 2,
+      "type": "Assign",
+      "assignTo": "Variabl1",
+      "value": {
+         "id": 1,
+         "type": "Command",
+         "name": "Command1",
+         "args": []
+      }
+   },
+   {
+      "id": 4,
+      "type": "Assign",
+      "assignTo": "Variabl1",
+      "value": {
+         "id": 3,
+         "type": "Command",
+         "name": "Command1-2",
+         "args": []
+      }
+   },
+   {
+      "id": 6,
+      "type": "Assign",
+      "assignTo": "Variabl2",
+      "value": {
+         "id": 5,
+         "type": "Command",
+         "name": "Command2",
+         "args": [
+            {
+               "name": "arg1",
+               "value": "value"
+            },
+            {
+               "name": "arg2",
+               "value": "false"
+            }
+         ]
+      }
+   },
+   {
+      "id": 8,
+      "type": "Assign",
+      "assignTo": "Variabl3",
+      "value": {
+         "id": 7,
+         "type": "Command",
+         "name": "Command3",
+         "args": [
+            {
+               "name": "arg1",
+               "value": "value"
+            },
+            {
+               "name": "arg2",
+               "value": "false"
+            }
+         ]
+      }
+   },
+   {
+      "id": 10,
+      "type": "Assign",
+      "assignTo": "Variabl4",
+      "value": {
+         "id": 9,
+         "type": "Command",
+         "name": "Command4",
+         "args": []
+      }
+   },
+   {
+      "id": 12,
+      "type": "Assign",
+      "assignTo": "Variabl5",
+      "value": {
+         "id": 11,
+         "type": "Command",
+         "name": "Command5",
+         "args": [
+            {
+               "name": "arg1",
+               "value": "taro"
+            },
+            {
+               "name": "arg2",
+               "value": "false"
+            },
+            {
+               "name": "arg3",
+               "value": "234"
+            }
+         ]
+      }
+   },
+   {
+      "id": 14,
+      "type": "Assign",
+      "assignTo": "Variabl6",
+      "value": {
+         "id": 13,
+         "type": "Command",
+         "name": "text line1\r\ntext line2",
+         "args": []
+      }
+   }
+]

@@ -1,0 +1,69 @@
+[
+   {
+      "id": 1,
+      "type": "Command",
+      "name": "Command1",
+      "args": []
+   },
+   {
+      "id": 2,
+      "type": "Command",
+      "name": "Command1-2",
+      "args": []
+   },
+   {
+      "id": 3,
+      "type": "Command",
+      "name": "Command2",
+      "args": [
+         {
+            "name": "arg1",
+            "value": "value"
+         },
+         {
+            "name": "arg2",
+            "value": "false"
+         }
+      ]
+   },
+   {
+      "id": 4,
+      "type": "Command",
+      "name": "Command3",
+      "args": [
+         {
+            "name": "arg1",
+            "value": "value"
+         },
+         {
+            "name": "arg2",
+            "value": "false"
+         }
+      ]
+   },
+   {
+      "id": 5,
+      "type": "Command",
+      "name": "Command5",
+      "args": [
+         {
+            "name": "arg1",
+            "value": "taro"
+         },
+         {
+            "name": "arg2",
+            "value": "false"
+         },
+         {
+            "name": "arg3",
+            "value": "234"
+         }
+      ]
+   },
+   {
+      "id": 6,
+      "type": "Command",
+      "name": "text line1\r\ntext line2",
+      "args": []
+   }
+]

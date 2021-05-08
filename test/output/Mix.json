@@ -1,0 +1,159 @@
+[
+    {
+       "id": 1,
+       "type": "Command",
+       "name": "Read graph: G(V)",
+       "args": []
+    },
+    {
+       "id": 2,
+       "type": "Command",
+       "name": "Read start position: source",
+       "args": []
+    },
+    {
+       "id": 3,
+       "type": "Command",
+       "name": "create vertex set Q",
+       "args": []
+    },
+    {
+       "id": 12,
+       "type": "While",
+       "condition": {
+          "id": 4,
+          "type": "Command",
+          "name": "vertex v in Graph",
+          "args": []
+       },
+       "terms": [
+          {
+             "id": 10,
+             "type": "IfThen",
+             "condition": {
+                "id": 5,
+                "type": "Command",
+                "name": "v is not source",
+                "args": []
+             },
+             "thens": [
+                {
+                   "id": 7,
+                   "type": "Assign",
+                   "assignTo": "dist[v]",
+                   "value": {
+                      "id": 6,
+                      "type": "Command",
+                      "name": "Infinity",
+                      "args": []
+                   }
+                },
+                {
+                   "id": 9,
+                   "type": "Assign",
+                   "assignTo": "prev[v]",
+                   "value": {
+                      "id": 8,
+                      "type": "Command",
+                      "name": "undefined",
+                      "args": []
+                   }
+                }
+             ]
+          },
+          {
+             "id": 11,
+             "type": "Command",
+             "name": "add v to Q",
+             "args": []
+          }
+       ]
+    },
+    {
+       "id": 27,
+       "type": "While",
+       "condition": {
+          "id": 13,
+          "type": "Command",
+          "name": "Q is not empty",
+          "args": []
+       },
+       "terms": [
+          {
+             "id": 14,
+             "type": "Command",
+             "name": "pick vertex u in Q with min dist[u]",
+             "args": []
+          },
+          {
+             "id": 15,
+             "type": "Command",
+             "name": "remove u from Q",
+             "args": []
+          },
+          {
+             "id": 26,
+             "type": "While",
+             "condition": {
+                "id": 16,
+                "type": "Command",
+                "name": "neighbor v of u",
+                "args": []
+             },
+             "terms": [
+                {
+                   "id": 18,
+                   "type": "Assign",
+                   "assignTo": "alt",
+                   "value": {
+                      "id": 17,
+                      "type": "Command",
+                      "name": "dist[u] + length(u,v)",
+                      "args": []
+                   }
+                },
+                {
+                   "id": 25,
+                   "type": "IfThen",
+                   "condition": {
+                      "id": 19,
+                      "type": "Command",
+                      "name": "alt is less than dist[v]",
+                      "args": []
+                   },
+                   "thens": [
+                      {
+                         "id": 21,
+                         "type": "Assign",
+                         "assignTo": "dist[v]",
+                         "value": {
+                            "id": 20,
+                            "type": "Command",
+                            "name": "alt",
+                            "args": []
+                         }
+                      },
+                      {
+                         "id": 23,
+                         "type": "Assign",
+                         "assignTo": "prev[v]",
+                         "value": {
+                            "id": 22,
+                            "type": "Command",
+                            "name": "u",
+                            "args": []
+                         }
+                      },
+                      {
+                         "id": 24,
+                         "type": "Command",
+                         "name": "update priority of v in Q",
+                         "args": []
+                      }
+                   ]
+                }
+             ]
+          }
+       ]
+    }
+ ]

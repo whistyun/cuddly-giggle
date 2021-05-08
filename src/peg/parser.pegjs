@@ -1,4 +1,6 @@
 {
+  var publishedId=0;
+
   function makeBool(text) { return text; }
 
   function makeWord(text) { return text; }
@@ -68,17 +70,18 @@
     return buff;
   }
 
-  function makeCommand(name, args, contents){
+  function makeCommand(name, args){
     return {
+      id: ++publishedId,
       type: "Command",
       name,
       args,
-      contents
     };
   }
 
   function makeAssign(assignTo, value){
     return {
+      id: ++publishedId,
       type: "Assign",
       assignTo,
       value
@@ -86,24 +89,40 @@
   }
 
   function makeIfThen(condition, thens, elses){
-    return {
-      type: "IfThen",
-      condition,
-      thens,
-      elses
-    };
+    return elses?
+      {
+        id: ++publishedId,
+        type: "IfThen",
+        condition,
+        thens,
+        elses
+      }:
+      {
+        id: ++publishedId,
+        type: "IfThen",
+        condition,
+        thens
+      };
   }
 
   function makeElifChain(thens, elses){
-    return {
-      type: "ElifChain",
-      thens,
-      elses
-    };
+    return elses?
+      {
+        id: ++publishedId,
+        type: "ElifChain",
+        thens,
+        elses
+      }:
+      {
+        id: ++publishedId,
+        type: "ElifChain",
+        thens
+      };
   }
 
   function makeWhile(condition, terms){
     return {
+      id: ++publishedId,
       type: "While",
       condition,
       terms
@@ -112,6 +131,7 @@
 
   function makeSwitch(condition, cases){
     return {
+      id: ++publishedId,
       type: "Switch",
       condition,
       cases
@@ -120,6 +140,7 @@
 
   function makeGoto(label){
     return {
+      id: ++publishedId,
       type: "Goto",
       label
     };
@@ -127,6 +148,7 @@
 
   function makeLabel(label, target){
     return {
+      id: ++publishedId,
       type: "Label",
       label,
       target
@@ -147,41 +169,34 @@ CompleteSentence
     return b.map(ary=>ary[1]).filter(elm=>!!elm);
   }
 
-ConditionAndCommands
-  = c:Command b:( _ SentenceAll )* {
-    var cmds = b.map(ary=>ary[1]).filter(elm=>!!elm);
-    return { "condition":c, "terms":cmds };
-  }
-
-
-SentenceAll = REM / SentenceAssign / SentenceIf / SentenceWhile / SentenceSwitch / SentenceLabel / SentenceGoto / Command
+SentenceAll = REM / SentenceAssign / SentenceIf / SentenceWhile / SentenceSwitch / SentenceLabel / SentenceGoto / FullCommand
 
 SentenceLabel
-  = l:Word t:(SentenceAssign / SentenceIf / SentenceWhile / SentenceSwitch / Command){
+  = l:Word _ ":" _ t:(SentenceAssign / SentenceIf / SentenceWhile / SentenceSwitch / FullCommand){
     return makeLabel(l, t);
   }
 
 SentenceGoto
-  = ReservedGoto l:Word {
+  = ReservedGoto __ l:Word {
     return makeGoto(l);
   }
 
 SentenceAssign
-  = t:( Word / Text ) _1 "="  _ v:Command { return makeAssign(t.toString(), v); }
-  / t:( Word / Text ) _1 "<-" _ v:Command { return makeAssign(t.toString(), v); }
+  = t:( Word / Text ) _1 "="  _ v:FullCommand { return makeAssign(t.toString(), v); }
+  / t:( Word / Text ) _1 "<-" _ v:FullCommand { return makeAssign(t.toString(), v); }
 
 SentenceSwitch
-  = ReservedSwitch __1 cn:Command 
-      cs:( __ ReservedCase __1 Text _1 [;\r\n]? _ CompleteSentence? )+
-    _ ReservedEnd _1 [;\r\n] {
+  = ReservedSwitch __1 cn:CommandLine _1 [\r\n] 
+      cs:( __ ReservedCase __1 Text _1 [:\r\n]? _ CompleteSentence? )+
+    _ ReservedEnd ( __1 ReservedSwitch )?  _1 [\r\n] {
 
     return makeSwitch(cn, cs.map(elm=>{ return { label:elm[3], terms: elm[7]? elm[7]: [] } }));
   }
 
 SentenceIf
-  = ReservedIf __1 c:ConditionAndCommands
+  = ReservedIf __1 c:ConditionAndCommands 
      elf:( _ ReservedElif __1 ConditionAndCommands )*
-     els:( _ ReservedElse __ CompleteSentence? )? _ ReservedEnd _1 [;\r\n] {
+     els:( _ ReservedElse __ CompleteSentence? )? _ ReservedEnd ( __1 ReservedIf )? _1 [\r\n] {
 
     if(elf.length===0){
       // if-else
@@ -205,23 +220,36 @@ SentenceIf
     }
   }
 
+ConditionAndCommands
+  = c:CommandLine _1 ("Then"i)? _1 [\r\n] b:( _ SentenceAll )* {
+    var cmds = b.map(ary=>ary[1]).filter(elm=>!!elm);
+    return { "condition":c, "terms":cmds };
+  }
+
 SentenceWhile
-  = ReservedWhile __1 c:ConditionAndCommands _ ReservedEnd _1 [;\r\n] {
-    return makeWhile(c.condition, c.terms);
+  = ReservedWhile __1  c:CommandLine _1 [\r\n] b:( _ SentenceAll )* _ ReservedEnd ( __1 ReservedWhile )?  _1 [\r\n] {
+    var cmds = b.map(ary=>ary[1]).filter(elm=>!!elm);
+    return makeWhile(c, cmds);
   }
 
 ////////////////////////////////////////
 // command
 ////////////////////////////////////////
-Command
-  = c:( Word / Text ) _1 b:Text? _1 [;\r\n] {
-    return makeCommand(c, [], b);
+
+FullCommand = c:CommandLine _1 [\r\n;] {return c}
+
+CommandLine = CommandWithArgs / SimpleCommand
+
+SimpleCommand
+  = c:( Word / Text ) {
+    return makeCommand(c, []);
   }
-  / c:( Word / Text ) _1 "(" _ a1:ArgAndValue an:( _ "," _ ArgAndValue )* _ ")" _1 b:Text? _1 [;\r\n] {
+
+CommandWithArgs
+  = c:( Word / Text ) _1 "(" _ a1:ArgAndValue an:( _ "," _ ArgAndValue )* _ ")" {
     var argArry = [a1];
     Array.prototype.push.apply(argArry, an.map(ary=> ary[3]));
-
-    return makeCommand(c, argArry, b);
+    return makeCommand(c, argArry);
   }
 
 ArgAndValue
@@ -246,7 +274,7 @@ Boolean "boolean"
 /** variable */
 Word "word" =
   "@" (firstLetter secondLetter*)           { return makeWord(text().substring(1)) } /
-  ReservedWord secondLetter*                { return makeWord(text())              } /
+  ReservedWord secondLetter+                { return makeWord(text())              } /
   !ReservedWord (firstLetter secondLetter*) { return makeWord(text())              }
 
 firstLetter  = [A-Za-z\u3041-\u3096\u30A1-\u30FA\u32D0-\u32FE\u4E00-\u62FF\u6300-\u77FF\u7800-\u8CFF\u8D00-\u9FFF\u30FC]

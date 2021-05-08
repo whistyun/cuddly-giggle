@@ -1,0 +1,53 @@
+[
+   {
+      "id": 6,
+      "type": "Switch",
+      "condition": {
+         "id": 1,
+         "type": "Command",
+         "name": "condition",
+         "args": [
+            {
+               "name": "arg1",
+               "value": "1234"
+            }
+         ]
+      },
+      "cases": [
+         {
+            "label": "a",
+            "terms": [
+               {
+                  "id": 2,
+                  "type": "Command",
+                  "name": "CommandA1",
+                  "args": []
+               },
+               {
+                  "id": 3,
+                  "type": "Command",
+                  "name": "CommandA2",
+                  "args": []
+               }
+            ]
+         },
+         {
+            "label": "b",
+            "terms": [
+               {
+                  "id": 4,
+                  "type": "Command",
+                  "name": "CommandB1",
+                  "args": []
+               },
+               {
+                  "id": 5,
+                  "type": "Command",
+                  "name": "Switch",
+                  "args": []
+               }
+            ]
+         }
+      ]
+   }
+]

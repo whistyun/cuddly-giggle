@@ -1,0 +1,37 @@
+/*
+ * Dijkstra's algorithm 
+ */
+
+//* get parameter
+"Read graph: G(V)"
+"Read start position: source"
+
+//* initialize
+"create vertex set Q"
+
+While "vertex v in Graph"
+
+    If "v is not source" Then
+        "dist[v]" <- Infinity
+        "prev[v]" <- undefined
+    End If
+
+    "add v to Q"
+
+End While
+
+While "Q is not empty"
+
+    "pick vertex u in Q with min dist[u]"
+    "remove u from Q"
+
+    While "neighbor v of u"
+        alt = "dist[u] + length(u,v)"
+
+        If "alt is less than dist[v]"
+            "dist[v]" = alt;
+            "prev[v]" = u;
+            "update priority of v in Q"
+        End
+    End
+End

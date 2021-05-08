@@ -1,0 +1,14 @@
+
+@label:
+Command1
+
+If condition1
+    Command2
+    Goto @label
+
+Else
+    Command3
+    Goto label2
+End If
+
+label2:Command4

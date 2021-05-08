@@ -1,0 +1,21 @@
+Variabl1 = Command1
+
+Variabl1 =
+    "Command1-2"
+
+Variabl2 = Command2 (arg1: "value", arg2: false)
+
+Variabl3 = Command3 (arg1: "value", arg2: false)
+
+Variabl4 = Command4
+
+Variabl5 = Command5 (
+	arg1: "taro",
+	arg2: false,
+	arg3: 234
+)
+
+Variabl6 = """
+	text line1
+	text line2
+"""

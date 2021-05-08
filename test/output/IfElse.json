@@ -1,0 +1,73 @@
+[
+   {
+      "id": 4,
+      "type": "IfThen",
+      "condition": {
+         "id": 1,
+         "type": "Command",
+         "name": "condition1",
+         "args": [
+            {
+               "name": "arg1",
+               "value": "value"
+            }
+         ]
+      },
+      "thens": [
+         {
+            "id": 2,
+            "type": "Command",
+            "name": "command11",
+            "args": [
+               {
+                  "name": "arg1",
+                  "value": "value"
+               }
+            ]
+         },
+         {
+            "id": 3,
+            "type": "Command",
+            "name": "command12",
+            "args": []
+         }
+      ]
+   },
+   {
+      "id": 9,
+      "type": "IfThen",
+      "condition": {
+         "id": 5,
+         "type": "Command",
+         "name": "condition2",
+         "args": []
+      },
+      "thens": [
+         {
+            "id": 6,
+            "type": "Command",
+            "name": "command21",
+            "args": [
+               {
+                  "name": "arg1",
+                  "value": "value"
+               }
+            ]
+         },
+         {
+            "id": 7,
+            "type": "Command",
+            "name": "command22",
+            "args": []
+         }
+      ],
+      "elses": [
+         {
+            "id": 8,
+            "type": "Command",
+            "name": "command3",
+            "args": []
+         }
+      ]
+   }
+]

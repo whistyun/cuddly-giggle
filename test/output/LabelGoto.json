@@ -1,0 +1,60 @@
+[
+    {
+       "id": 2,
+       "type": "Label",
+       "label": "label",
+       "target": {
+          "id": 1,
+          "type": "Command",
+          "name": "Command1",
+          "args": []
+       }
+    },
+    {
+       "id": 8,
+       "type": "IfThen",
+       "condition": {
+          "id": 3,
+          "type": "Command",
+          "name": "condition1",
+          "args": []
+       },
+       "thens": [
+          {
+             "id": 4,
+             "type": "Command",
+             "name": "Command2",
+             "args": []
+          },
+          {
+             "id": 5,
+             "type": "Goto",
+             "label": "label"
+          }
+       ],
+       "elses": [
+          {
+             "id": 6,
+             "type": "Command",
+             "name": "Command3",
+             "args": []
+          },
+          {
+             "id": 7,
+             "type": "Goto",
+             "label": "label2"
+          }
+       ]
+    },
+    {
+       "id": 10,
+       "type": "Label",
+       "label": "label2",
+       "target": {
+          "id": 9,
+          "type": "Command",
+          "name": "Command4",
+          "args": []
+       }
+    }
+ ]
